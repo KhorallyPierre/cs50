@@ -21,10 +21,13 @@ int main(void)
 
     for (int i = 1; i <= height; i++) {
         int dotsOnEachLine = height - i;
+        // print_hash(i);
         print_dot(dotsOnEachLine);
         print_hash(i);
-
+        printf("  ");
+        print_hash(i);
         printf("\n");
+
     }
 
 
@@ -40,6 +43,7 @@ void print_hash(int numberOfHashes)
 
             printf("#");
 
+
         }
 }
 
@@ -49,7 +53,7 @@ void print_dot(int numberOfDots)
     //avoid the first line of hashes
     // after that add one dot, then another then another untill top is reached
     for (int row = 1 ; row <= numberOfDots; row++){
-        printf(".");
+        printf(" ");
     }
 
 }
