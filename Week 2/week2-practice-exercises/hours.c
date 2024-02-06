@@ -40,19 +40,19 @@ int main(void)
 float calc_hours(int hours[], int weeks, char output)
 {
     // To complete calc_hours, first total up the hours saved in the array into a new variable.
-    int total_hours = 0;
-    int number_of_weeks = sizeof(hours[weeks])/sizeof(hours[0]);
-    for (int j = 0; j <= number_of_weeks; j++){
-         total_hours = total_hours + hours[j];
+     float total_hours = 0.0;
+    // weeks-1 represents the last index in the array of the number of hours for each week
+    // j represents the current index of that hour
+    for (int j = 0; j <= weeks-1; j++){
+         total_hours +=  hours[j];
+         printf("last index in the array %i \n", weeks-1);
     }
-
-
 
     // Then, depending on the value of output, return either the sum, or the average number of hours.
     if (output == 'T'){
        return total_hours;
     }else if (output == 'A'){
-        return total_hours/weeks;
+        return total_hours/ weeks;
     }
-    return 0;
+    return 0.0;
 }
