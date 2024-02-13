@@ -65,19 +65,19 @@ bool valid(string password)
         bool digit = isdigit(character);
         bool symbol = issymbol(character);
 
-        if (isupper(password[i]))
+        if (uppercase)
         {
             word_has_uppercase = true;
         }
-        else if (islower(password[i]))
+        else if (lowercase)
         {
             word_has_lowercase = true;
         }
-        else if (isdigit(password[i]))
+        else if (digit)
         {
             word_has_digit = true;
         }
-        else if (issymbol(password[i]))
+        else if (symbol)
         {
             word_has_symbol = true;
         }
