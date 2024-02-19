@@ -14,6 +14,7 @@ char rotate(char character_from_plain_text, int string_key);
 bool only_digits(string string_key);
 int main(int argc, string argv[])
 {
+
     if (argc == 1)
     {
         printf("you must provide a key \n");
@@ -21,12 +22,14 @@ int main(int argc, string argv[])
     }
 
     string string_key = argv[1];
-    // calling digits function when key is inserted
-    int digit_key = only_digits(string_key);
 
     int length = strlen(string_key);
-
+    if (!only_digits(string_key))
+    {
+        return 1;
+    };
     for (int i = 0; i < length; i++)
+
     {
         if (length > 1 && isdigit(string_key[i]))
         {
@@ -34,18 +37,20 @@ int main(int argc, string argv[])
             return 1;
         }
     }
-    char current_character;
+
+    int digit_key;
+
     printf("success \n");
     string plain_text = get_string("plaintext: ");
     char length_of_plain_text = strlen(plain_text);
     for (int j = 0; j < length_of_plain_text; j++)
     {
-        current_character = plain_text[j];
+        // each character needs to be passed into rotate
+
+        char current_character = plain_text[j];
+        rotate(current_character, digit_key);
+        // printf("current character %c \n", current_character);
     }
-    // printf("current character %c \n", current_character);
-    rotate(current_character, digit_key);
-    printf("current character %c \n", current_character);
-    
 }
 
 bool only_digits(string string_key)
@@ -65,6 +70,7 @@ bool only_digits(string string_key)
 
 char rotate(char character_from_plain_text, int digit_key)
 {
+
     char alphabet_lower[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 's', 't', 'u', 'v', 'x', 'y', 'z'};
     // printf("characer from plain text %c", character_from_plain_text);
     for (int i = 0; i < 27; i++)
@@ -73,16 +79,18 @@ char rotate(char character_from_plain_text, int digit_key)
         char cipher_character;
         char lowercase_character = alphabet_lower[i];
         char uppercase_character = toupper(alphabet_lower[i]);
-        printf("alphabet lower %c \n", lowercase_character);
-        printf("alphabet upper %c \n", uppercase_character);
+
         if (character_from_plain_text == alphabet_lower[i])
         {
+            // cc will be the al moved key times over
             cipher_character = alphabet_lower[i + digit_key];
-            return cipher_character;
+
+            printf("cipher_character %c \n", cipher_character);
         }
         else if (character_from_plain_text == uppercase_character)
         {
             cipher_character = uppercase_character + digit_key;
+            printf("cipher_character %c \n", cipher_character);
         }
         else if (character_from_plain_text != lowercase_character || character_from_plain_text != uppercase_character)
         {
