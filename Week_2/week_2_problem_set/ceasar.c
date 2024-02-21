@@ -37,7 +37,6 @@ int main(int argc, string argv[])
             return 1;
         }
     }
-    // convert digit key from string to digit using argument to integer;
 
     int digit_key = atoi(string_key);
     printf("digit key %i \n", digit_key);
@@ -46,13 +45,9 @@ int main(int argc, string argv[])
     char length_of_plain_text = strlen(plain_text);
     for (int j = 0; j < length_of_plain_text; j++)
     {
-        // each character needs to be passed into rotate
 
         char current_character = plain_text[j];
         char cipher_character = rotate(current_character, digit_key);
-        // return cipher_text for each character using rotate function
-        // function returns cipgertext already
-        printf("rotate value %c \n", cipher_character);
     }
 }
 
@@ -75,9 +70,18 @@ char rotate(char character_from_plain_text, int digit_key)
 {
 
     char cipher_character = character_from_plain_text;
-    char alphabet_lower[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 's', 't', 'u', 'v', 'x', 'y', 'z'};
+    char alphabet_lower[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z'};
     char length_of_alphabet = strlen(alphabet_lower);
-
+    if (character_from_plain_text == ',')
+    {
+        cipher_character = ',';
+        printf("commas in cipher %c \n ", cipher_character);
+    }
+    else if (character_from_plain_text == ' ')
+    {
+        cipher_character = ' ';
+        printf("Space %c \n", cipher_character);
+    }
     for (int i = 0; i < length_of_alphabet; i++)
     {
 
@@ -98,11 +102,16 @@ char rotate(char character_from_plain_text, int digit_key)
 
         {
             cipher_character = toupper(alphabet_lower[new_index]);
-          
+
             printf("ciper character upper %c \n", cipher_character);
+        } 
+
+        if ((lowercase_character + digit_key) > length_of_alphabet){
+            // count up to the last index
+            // continue counting from index 0
+            // once digit key no longer has a value, stop, and 
+            // cipher_character = letter where the key ran out on. 
         }
-
-
     }
 
     return cipher_character;
