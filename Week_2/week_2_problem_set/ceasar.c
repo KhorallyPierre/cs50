@@ -106,11 +106,15 @@ char rotate(char character_from_plain_text, int digit_key)
             printf("ciper character upper %c \n", cipher_character);
         } 
 
-        if ((lowercase_character + digit_key) > length_of_alphabet){
-            // count up to the last index
-            // continue counting from index 0
-            // once digit key no longer has a value, stop, and 
-            // cipher_character = letter where the key ran out on. 
+        if ((index + digit_key) > length_of_alphabet){
+            printf("it's happening");
+            
+            // once the index reaches 26 and there's still a value in the key
+            // continue from index 0
+            //Odds are you’ll find % helpful when “wrapping around” arithmetically from a value like 25 to 0.
+            // int tentative_index = digit_key - ;
+           
+          
         }
     }
 
