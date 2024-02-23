@@ -48,6 +48,8 @@ int main(int argc, string argv[])
 
         char current_character = plain_text[j];
         char cipher_character = rotate(current_character, digit_key);
+        // we need a condition for new digit key
+        printf("rotate result %c \n", cipher_character);
     }
 }
 
@@ -70,17 +72,17 @@ char rotate(char character_from_plain_text, int digit_key)
 {
 
     char cipher_character = character_from_plain_text;
-    char alphabet_lower[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z'};
-    char length_of_alphabet = strlen(alphabet_lower);
+    char alphabet_lower[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+    int length_of_alphabet = 26;
+
     if (character_from_plain_text == ',')
     {
         cipher_character = ',';
-        printf("commas in cipher %c \n ", cipher_character);
     }
     else if (character_from_plain_text == ' ')
     {
         cipher_character = ' ';
-        printf("Space %c \n", cipher_character);
     }
     for (int i = 0; i < length_of_alphabet; i++)
     {
@@ -88,34 +90,46 @@ char rotate(char character_from_plain_text, int digit_key)
         char lowercase_character = alphabet_lower[i];
         char uppercase_character = toupper(alphabet_lower[i]);
         int index = i;
-        int new_index = i + digit_key;
 
-        // print value at that index, add that value to char cipher_character[] = {}
-        // apply new index to alphabet, print corresponding letter
-        // Odds are you’ll find % helpful when “wrapping around” arithmetically from a value like 25 to 0.
+        int new_index = index + digit_key;
+        int tentative_index = (new_index) % length_of_alphabet;
+
         if (character_from_plain_text == lowercase_character)
         {
             cipher_character = alphabet_lower[new_index];
+            if ((new_index) > length_of_alphabet)
+            {
+                cipher_character = alphabet_lower[tentative_index];
+            }
             printf("ciper character lower %c \n", cipher_character);
         }
         else if (character_from_plain_text == uppercase_character)
 
         {
             cipher_character = toupper(alphabet_lower[new_index]);
-
-            printf("ciper character upper %c \n", cipher_character);
-        } 
-
-        if ((index + digit_key) > length_of_alphabet){
-            printf("it's happening");
-            
-            // once the index reaches 26 and there's still a value in the key
-            // continue from index 0
-            //Odds are you’ll find % helpful when “wrapping around” arithmetically from a value like 25 to 0.
-            // int tentative_index = digit_key - ;
-           
-          
+            if ((new_index) > length_of_alphabet)
+            {
+                cipher_character = toupper(alphabet_lower[tentative_index]);
+            }
+            // printf("ciper character upper %c \n", cipher_character);
         }
+
+        // else if ((new_index) > length_of_alphabet)
+        // {
+        //   printf("chracter from plain text %c \n", character_from_plain_text);
+        //   printf("lower case character %c \n", lowercase_character);
+        //     if (character_from_plain_text == lowercase_character)
+
+        //     {
+        //         printf("tentative index %i \n", tentative_index);
+        //         cipher_character = alphabet_lower[tentative_index];
+        //         printf("cipher character wrapping  %c \n", cipher_character);
+        //     }
+        //     else if (character_from_plain_text == uppercase_character)
+        //     {
+        //         cipher_character = toupper(alphabet_lower[tentative_index]);
+        //     }
+        // }
     }
 
     return cipher_character;
