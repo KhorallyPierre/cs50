@@ -97,14 +97,19 @@ char rotate(char character_from_plain_text, int digit_key)
         if (character_from_plain_text == lowercase_character)
         {
             cipher_character = alphabet_lower[new_index];
-            if ((new_index) > length_of_alphabet)
+            printf(" c_c before wrapping condition %c \n ", cipher_character);
+            printf("if condition %i\n", (new_index) >= length_of_alphabet);
+            if ((new_index) >= length_of_alphabet)
             {
-                cipher_character = alphabet_lower[tentative_index];
+                cipher_character = alphabet_lower[tentative_index]; 
+                printf("ciper character lower %c \n", cipher_character);
             }
-            printf("ciper character lower %c \n", cipher_character);
+            // printf("new index %i \n", new_index);
+            // printf("tentative index %i \n", tentative_index);
+           
+          
         }
         else if (character_from_plain_text == uppercase_character)
-
         {
             cipher_character = toupper(alphabet_lower[new_index]);
             if ((new_index) > length_of_alphabet)
