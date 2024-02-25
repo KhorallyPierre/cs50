@@ -48,8 +48,8 @@ int main(int argc, string argv[])
 
         char current_character = plain_text[j];
         char cipher_character = rotate(current_character, digit_key);
-        // we need a condition for new digit key
-        printf("rotate result %c \n", cipher_character);
+       
+        printf("%c", cipher_character);
     }
 }
 
@@ -97,44 +97,24 @@ char rotate(char character_from_plain_text, int digit_key)
         if (character_from_plain_text == lowercase_character)
         {
             cipher_character = alphabet_lower[new_index];
-            printf(" c_c before wrapping condition %c \n ", cipher_character);
-            printf("if condition %i\n", (new_index) >= length_of_alphabet);
+
             if ((new_index) >= length_of_alphabet)
             {
-                cipher_character = alphabet_lower[tentative_index]; 
-                printf("ciper character lower %c \n", cipher_character);
+                cipher_character = alphabet_lower[tentative_index];
             }
-            // printf("new index %i \n", new_index);
-            // printf("tentative index %i \n", tentative_index);
-           
           
         }
         else if (character_from_plain_text == uppercase_character)
         {
             cipher_character = toupper(alphabet_lower[new_index]);
-            if ((new_index) > length_of_alphabet)
+            if ((new_index) >= length_of_alphabet)
             {
                 cipher_character = toupper(alphabet_lower[tentative_index]);
             }
-            // printf("ciper character upper %c \n", cipher_character);
+            
         }
 
-        // else if ((new_index) > length_of_alphabet)
-        // {
-        //   printf("chracter from plain text %c \n", character_from_plain_text);
-        //   printf("lower case character %c \n", lowercase_character);
-        //     if (character_from_plain_text == lowercase_character)
-
-        //     {
-        //         printf("tentative index %i \n", tentative_index);
-        //         cipher_character = alphabet_lower[tentative_index];
-        //         printf("cipher character wrapping  %c \n", cipher_character);
-        //     }
-        //     else if (character_from_plain_text == uppercase_character)
-        //     {
-        //         cipher_character = toupper(alphabet_lower[tentative_index]);
-        //     }
-        // }
+      
     }
 
     return cipher_character;
