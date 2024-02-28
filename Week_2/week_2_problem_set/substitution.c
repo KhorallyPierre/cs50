@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
+char make_cipher(char current_plain_character, string key);
 int main(int argc, string argv[])
 {
     if (argc < 2)
@@ -55,12 +57,57 @@ int main(int argc, string argv[])
             char a_banned_character = banned_characters[i];
             if (current_key == a_banned_character)
             {
-                printf("banned charactr %c", a_banned_character);
+
                 printf("symbols are not allowed \n");
                 return 1;
             };
         }
     }
+
+    string plain_text = get_string("plaintext: ");
+    char length_of_plaintext = strlen(plain_text);
+    for (int i = 0; i < length_of_plaintext; i++)
+    {
+        char current_character = plain_text[i];
+
+        // for each letter, call make_cipher
+        char ciphertext = make_cipher(current_character, key);
+        printf("ciphertext %c ", ciphertext);
+    }
+}
+
+char make_cipher(char each_character_from_plain_text, string key)
+// each_character is each character from plaintext
+// string key is the 26 character long key
+//  loop through alphabet to find the index of each character
+// apply that index to the string key, and return value at that index
+{
+    char uppercase_characters_from_plain_text = toupper(each_character_from_plain_text);
+    char cipher_character = each_character_from_plain_text;
+    char alphabet[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+    int total_letters_in_alphabet = sizeof(alphabet) / sizeof(alphabet[0]);
+
+    for (int i = 0; i < total_letters_in_alphabet; i++)
+
+    {
+        char alphabet_lower = alphabet[i];
+        char alphabet_upper = toupper(alphabet[i]);
+        int each_index_in_alphabet = i;
+
+        if (each_character_from_plain_text == alphabet_lower)
+        {
+            
+            cipher_character = key[i];
+            // printf("ciphercharacter %c \n", key[i]);
+            // printf("the index they share %i \n", i );
+        } else if (uppercase_characters_from_plain_text == alphabet_upper){
+            cipher_character = toupper(key[i]);
+        }
+    }
+
+    // print key's value at that index.
+    return cipher_character;
 }
 
 // cc substitution.c -lcs50 -lm -o substitution
