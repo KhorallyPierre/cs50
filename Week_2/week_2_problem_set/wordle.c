@@ -32,22 +32,22 @@ int main(int argc, string argv[])
         printf("you need a command line argument \n");
         return 1;
     }
-    string k = argv[1];
-    int k_length = strlen(k);
+    string k_string = argv[1];
+    int k = atoi(k_string);
     int wordsize = 0;
 
     // ensure argv[1] is either 5, 6, 7, or 8 and store that value in wordsize instead
     // TODO #2
-    if (k_length < 5 || k_length > 8)
+    if (k < 5 || k > 8)
     {
-        printf("word size must be 5, 6, 7, or 8");
-        printf("lenght of argument %i \n", k_length);
+        printf("acceptable values are 5, 6, 7, or 8");
+        printf("number inserted %i \n", k);
         return 0;
     }
     else
     {
-        wordsize = k_length;
-        printf("lenght of argument %i \n", k_length);
+        wordsize = k;
+        printf("lenght of argument %i \n", k);
     }
     // open correct file, each file has exactly LISTSIZE words
     char wl_filename[6];
@@ -82,14 +82,56 @@ int main(int argc, string argv[])
     // main game loop, one iteration for each guess
     for (int i = 0; i < guesses; i++)
     {
+        // guesses is the numnber of times the user gets to guess a word
         // obtain user's guess
         string guess = get_guess(wordsize);
-
+        printf("guess value %s \n", guess);
         // array to hold guess status, initially set to zero
-        int status[wordsize];
 
+        int status[wordsize];
+        for (int a = 0; a < wordsize; a++)
+        {
+            int each_element_of_status = status[a];
+
+            status[a] = 0;
+            printf("each element in state %i \n", status[a]);
+        }
         // set all elements of status array initially to 0, aka WRONG
         // TODO #4
+
+        // keep track of user's score on a per letter basis and a per word basis.
+        for (int j = 0; j < wordsize; j++)
+        {
+            char each_chosen_letter = choice[j];
+            printf("each chosen letter %c \n", each_chosen_letter);
+            for (int k = 0; k < wordsize; k++)
+            {
+                char each_letter = guess[k];
+                printf("each letter %c \n", each_letter);
+
+                // if letters match
+                if (each_letter == each_chosen_letter)
+                {
+                    status[i] = status[i] + 1;
+                    printf("new status after condition %i \n", status[i]);
+                }
+                // if letters and indices match
+
+                else if (each_letter == each_chosen_letter && k == j)
+                {
+                    printf("i value when 2 should be added %i \n", k);
+                    printf("j value when 2 should be added %i \n", j);
+                    status[i] = status[i] + 2;
+                }
+            }
+        }
+
+        // printf("each letter %c \n", each_letter);
+        // printf("choice value %c \n", each_chosen_letter);
+
+        // Score of 2 for letters in the correct place (defined as EXACT)
+        // score of 1 for letters in the word but in the wrong place (defined as CLOSE)
+        // score of 0 (defined as WRONG)
 
         // Calculate score for the guess
         int score = check_word(guess, wordsize, status, choice);
@@ -117,9 +159,18 @@ int main(int argc, string argv[])
 string get_guess(int wordsize)
 {
     string guess = "";
+    int length_of_guess = 0;
 
     // ensure users actually provide a guess that is the correct length
     // TODO #3
+
+    do
+    {
+        guess = get_string("word: ");
+        length_of_guess = strlen(guess);
+        printf("guess size %i \n", length_of_guess);
+        printf("word size %i \n", wordsize);
+    } while (wordsize != length_of_guess);
 
     return guess;
 }
