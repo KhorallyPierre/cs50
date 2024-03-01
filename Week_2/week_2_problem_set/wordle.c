@@ -104,37 +104,28 @@ int main(int argc, string argv[])
         for (int j = 0; j < wordsize; j++)
         {
             char each_chosen_letter = choice[j];
-            printf("each chosen letter %c \n", each_chosen_letter);
+
             for (int k = 0; k < wordsize; k++)
             {
                 char each_letter = guess[k];
-                printf("each letter %c \n", each_letter);
 
                 // if letters and indices match
 
                 if (each_letter == each_chosen_letter && k == j)
                 {
-                    printf("i value when 2 should be added %i \n", k);
-                    printf("j value when 2 should be added %i \n", j);
+
                     status[i] = status[i] + EXACT;
                 } // if letters match
                 else if (each_letter == each_chosen_letter)
                 {
                     status[i] = status[i] + CLOSE;
-                    printf("new status after condition %i \n", status[i]);
+
                 } // if a letter chosen isnt in the chosen word
                 else if (each_letter != each_chosen_letter)
                 {
                     status[i] = status[i] + WRONG;
                 }
             }
-
-            // printf("each letter %c \n", each_letter);
-            // printf("choice value %c \n", each_chosen_letter);
-
-            // Score of 2 for letters in the correct place (defined as EXACT)
-            // score of 1 for letters in the word but in the wrong place (defined as CLOSE)
-            // score of 0 (defined as WRONG)
 
             // Calculate score for the guess
             int score = check_word(guess, wordsize, status, choice);
@@ -184,7 +175,39 @@ int check_word(string guess, int wordsize, int status[], string choice)
 
     // compare guess to choice and score points as appropriate, storing points in status
     // TODO #5
+    for (int j = 0; j < wordsize; j++)
+    {
+        char each_chosen_letter = choice[j];
 
+        for (int k = 0; k < wordsize; k++)
+        {
+            char each_letter = guess[k];
+
+            // if letters and indices match
+
+            if (each_letter == each_chosen_letter && k == j)
+            {
+                // printf("i value when 2 should be added %i \n", k);
+                // printf("j value when 2 should be added %i \n", j);
+                score = score + EXACT;
+                printf("score %i \n", score);
+                break;
+            } // if letters match
+            else if (each_letter == each_chosen_letter)
+            {
+                score = score + CLOSE;
+
+            } // if a letter chosen isnt in the chosen word
+            else if (each_letter != each_chosen_letter)
+            {
+                score = score + WRONG;
+            }
+            
+            printf("each letter %c \n", each_letter);
+        }
+
+        printf("each chosen letter %c \n", each_chosen_letter);
+    }
     // HINTS
     // iterate over each letter of the guess
     // iterate over each letter of the choice
@@ -192,7 +215,7 @@ int check_word(string guess, int wordsize, int status[], string choice)
     // if they're the same position in the word, score EXACT points (green) and break so you don't compare that letter further
     // if it's in the word, but not the right spot, score CLOSE point (yellow)
     // keep track of the total score by adding each individual letter's score from above
-
+    printf("score %i \n", score);
     return score;
 }
 
