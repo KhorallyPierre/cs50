@@ -13,6 +13,7 @@
 #define WRONG 0
 
 // ANSI color codes for boxed in letters
+
 #define GREEN "\e[38;2;255;255;255;1m\e[48;2;106;170;100;1m"
 #define YELLOW "\e[38;2;255;255;255;1m\e[48;2;201;180;88;1m"
 #define RED "\e[38;2;255;255;255;1m\e[48;2;220;20;60;1m"
@@ -47,7 +48,7 @@ int main(int argc, string argv[])
     else
     {
         wordsize = k;
-        printf("lenght of argument %i \n", k);
+        printf("lenght of word %i \n", k);
     }
     // open correct file, each file has exactly LISTSIZE words
     char wl_filename[6];
@@ -109,46 +110,48 @@ int main(int argc, string argv[])
                 char each_letter = guess[k];
                 printf("each letter %c \n", each_letter);
 
-                // if letters match
-                if (each_letter == each_chosen_letter)
-                {
-                    status[i] = status[i] + 1;
-                    printf("new status after condition %i \n", status[i]);
-                }
                 // if letters and indices match
 
-                else if (each_letter == each_chosen_letter && k == j)
+                if (each_letter == each_chosen_letter && k == j)
                 {
                     printf("i value when 2 should be added %i \n", k);
                     printf("j value when 2 should be added %i \n", j);
-                    status[i] = status[i] + 2;
+                    status[i] = status[i] + EXACT;
+                } // if letters match
+                else if (each_letter == each_chosen_letter)
+                {
+                    status[i] = status[i] + CLOSE;
+                    printf("new status after condition %i \n", status[i]);
+                } // if a letter chosen isnt in the chosen word
+                else if (each_letter != each_chosen_letter)
+                {
+                    status[i] = status[i] + WRONG;
                 }
             }
-        }
 
-        // printf("each letter %c \n", each_letter);
-        // printf("choice value %c \n", each_chosen_letter);
+            // printf("each letter %c \n", each_letter);
+            // printf("choice value %c \n", each_chosen_letter);
 
-        // Score of 2 for letters in the correct place (defined as EXACT)
-        // score of 1 for letters in the word but in the wrong place (defined as CLOSE)
-        // score of 0 (defined as WRONG)
+            // Score of 2 for letters in the correct place (defined as EXACT)
+            // score of 1 for letters in the word but in the wrong place (defined as CLOSE)
+            // score of 0 (defined as WRONG)
 
-        // Calculate score for the guess
-        int score = check_word(guess, wordsize, status, choice);
+            // Calculate score for the guess
+            int score = check_word(guess, wordsize, status, choice);
 
-        printf("Guess %i: ", i + 1);
+            printf("Guess %i: ", i + 1);
 
-        // Print the guess
-        print_word(guess, wordsize, status);
+            // Print the guess
+            print_word(guess, wordsize, status);
 
-        // if they guessed it exactly right, set terminate loop
-        if (score == EXACT * wordsize)
-        {
-            won = true;
-            break;
+            // if they guessed it exactly right, set terminate loop
+            if (score == EXACT * wordsize)
+            {
+                won = true;
+                break;
+            }
         }
     }
-
     // Print the game's result
     // TODO #7
 
