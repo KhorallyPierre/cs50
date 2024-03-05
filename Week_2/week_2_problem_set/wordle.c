@@ -109,22 +109,27 @@ int main(int argc, string argv[])
                 if (each_letter == each_chosen_letter && k == j)
                 {
                     status[k] = EXACT;
+                
+                    break;
                     printf("each letter when it should be 2 points %c \n", each_letter);
                     printf("each chosen letter when it should be 2 point %c \n", each_chosen_letter);
 
-                } // if letters match
-                else if (k == j && each_letter != each_chosen_letter)
+                } 
+                else if (each_letter != each_chosen_letter && k != j)
                 {
                     printf("each letter when its 0 points %c \n", each_letter);
                     printf("each chosen letter wghen its 0 points %c \n", each_chosen_letter);
                     status[k] = WRONG;
+                  
                 }
-                else if (k != j && each_letter == each_chosen_letter)
+                else if (each_letter == each_chosen_letter && k != j  )
                 {
                     status[k] = CLOSE;
                     printf("each letter when it should be 1 point %c \n", each_letter);
                     printf("each chosen letter when it should be 1 point %c \n", each_chosen_letter);
+                    break;
                 } // if a letter chosen isnt in the chosen word
+               
             }
         }
 
