@@ -18,7 +18,8 @@ int main(void)
 
     int array[n];
     array[0] = 1;
-    for (int i = 1; i <= n; i++)
+    printf("%i \n", array[0]); 
+    for (int i = 1; i < n; i++)
     {
         // as i goes up,  gets multiplied by two
         array[i] = 2 * array[i -1];
