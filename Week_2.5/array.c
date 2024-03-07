@@ -21,7 +21,7 @@ int main(void)
     printf("array, integer by integer %i \n", array[0]); 
     for (int i = 1; i < n; i++)
     {
-        // as i goes up,  gets multiplied by two
+        // as i goes up, i's value becomes twice the value of the i before it.
         array[i] = 2 * array[i -1];
         
         printf("array, integer by integer %i \n", array[i]);
