@@ -17,11 +17,11 @@ int main(void)
     } while (n < 1);
 
     int array[n];
-    int each_element;
+  
     for (int i = 1; i <= n; i++)
     {
         // as i goes up,  gets multiplied by two
-        each_element = i * 2;
+        int each_element = i * 2;
         printf("array, integer by integer %i \n", each_element);
     }
 }
