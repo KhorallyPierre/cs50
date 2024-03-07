@@ -18,7 +18,7 @@ int main(void)
 
     int array[n];
     array[0] = 1;
-    printf("%i \n", array[0]); 
+    printf("array, integer by integer %i \n", array[0]); 
     for (int i = 1; i < n; i++)
     {
         // as i goes up,  gets multiplied by two
