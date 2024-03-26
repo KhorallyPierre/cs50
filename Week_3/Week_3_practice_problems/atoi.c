@@ -27,27 +27,23 @@ int convert(string input)
 {
     // TODO
     // use recursion to print out the given string as an integer
-    // int num_input = atoi(input);
-    // In the recursive version of convert, start with the last char and convert it into an integer value.
-    char new_string[] = {};
-    int length_of_string = strlen(input);
 
-    if (length_of_string == 0)
+    //  start with the last char and convert it into an integer value.
+    // Then shorten the string, removing the last char,
+    // and then recursively call convert using the shortened string as input,
+    // where the next char will be processed.
+    int input_length = strlen(input);
+    char last_element = input[input_length - 1];
+    printf("last element %c \n", last_element);
+    input[input_length - 1] = '\0';
+    // add null after next to last number in string
+
+    if (input_length == 1)
     {
-        char last_char = '\0';
+        return 0;
     }
-    else if (length_of_string > 0)
+    else
     {
-        int n = 1;
-        char last_char = input[length_of_string - n];
-        n++;
-        new_string[length_of_string];
-
-        // remove last character from string
-        //  pass new string into convert
-
-        convert(new_string);
+        return convert(input);
     }
-
-    return 1;
 }
