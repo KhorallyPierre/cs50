@@ -18,7 +18,7 @@ typedef struct
 } avg_temp;
 
 avg_temp temps[NUM_CITIES];
-
+int smallest_number(void);
 void sort_cities(void);
 
 int main(void)
@@ -70,25 +70,33 @@ void sort_cities(void)
     // loops through array
     for (int i = 0; i < NUM_CITIES; i++)
     {
-        int index = 0;
+        // loop through array and set current temp in variable
+
         int current_temp = temps[i].temp;
-        int smallest_temp = temps[index].temp;
-        if (current_temp < smallest_temp)
-        {
-            
-            // current temp swaps spots with smallest temp
-            current_temp = temps[index].temp;
-            // temps[i] = temps[index];
+       if (current_temp ){
 
-            index++;
-            printf("smallest temp in loop %i \n", smallest_temp);
-            printf("index %i \n", index);
-        }
+       }
+        //  swap original number's position with smallest number position in array
+        //  loop through array again excluding sorted smallest number and do the same thing
+        //  current temp swaps spots with smallest temp
+
+        current_temp = temps[i].temp;
+        // temps[i] = temps[index];
     }
-
-    // Find the smallest card. Swap it with the first card.
-    // Find the second-smallest card. Swap it with the second card.
-    // Find the third-smallest card. Swap it with the third card.
-    // Repeat finding the next-smallest card, and swapping it into
-    // the correct position until the array is sorted.
+   
+}  
+int smallest_number(void)
+{
+    // create a loop that doesnt include current temp
+     // find smallest number as we loop through
+     int num_length = sizeof(NUM_CITIES)/ sizeof( temps[0].temp);
+     int min = temps[0].temp;
+    for (int i = 0; i < num_length;  i++){
+        if (temps[i].temp < min){
+            min = temps[i].temp;
+            printf("min %i \n", min);
+        }
+        
+    }
+    return min;
 }
