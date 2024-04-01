@@ -18,7 +18,7 @@ typedef struct
 } avg_temp;
 
 avg_temp temps[NUM_CITIES];
-int smallest_number(void);
+int smallest_number_index(int);
 void sort_cities(void);
 
 int main(void)
@@ -71,32 +71,44 @@ void sort_cities(void)
     for (int i = 0; i < NUM_CITIES; i++)
     {
         // loop through array and set current temp in variable
-
         int current_temp = temps[i].temp;
-       if (current_temp ){
-
-       }
+        printf("current temp %i \n", current_temp);
+        // find smallest number as we loop through
+        int min_index = smallest_number_index(i);
+        printf("min index %i \n", min_index);
+        int min_temp = temps[min_index].temp;
         //  swap original number's position with smallest number position in array
-        //  loop through array again excluding sorted smallest number and do the same thing
-        //  current temp swaps spots with smallest temp
+        if (min_temp < current_temp)
+        {
+            // find location of min number
 
-        current_temp = temps[i].temp;
-        // temps[i] = temps[index];
+            // swap them - i is the current temperatures location
+            temps[i].temp = min_temp;
+            temps[min_index].temp = current_temp;
+            // current_temp = min_index
+            ;
+        }
+
+        //  loop through array again
+        // excluding sorted smallest number
+        // and do the same thing
+        //  current temp swaps spots with smallest temp
     }
-   
-}  
-int smallest_number(void)
+}
+int smallest_number_index(int x)
 {
     // create a loop that doesnt include current temp
-     // find smallest number as we loop through
-     int num_length = sizeof(NUM_CITIES)/ sizeof( temps[0].temp);
-     int min = temps[0].temp;
-    for (int i = 0; i < num_length;  i++){
-        if (temps[i].temp < min){
+
+    int min = temps[0].temp;
+    int min_index;
+    for (int i = x; i < NUM_CITIES; i++)
+    {
+        if (temps[i].temp < min)
+        {
             min = temps[i].temp;
+            min_index = i;
             printf("min %i \n", min);
         }
-        
     }
-    return min;
+    return min_index;
 }
