@@ -75,18 +75,21 @@ void sort_cities(void)
         printf("current temp %i \n", current_temp);
         // find smallest number as we loop through
         int min_index = smallest_number_index(i);
-        printf("min index %i \n", min_index);
+        printf("min index  sort cities function %i \n", min_index);
         int min_temp = temps[min_index].temp;
         //  swap original number's position with smallest number position in array
-        if (min_temp < current_temp)
+        if (min_temp < current_temp )
         {
             // find location of min number
 
             // swap them - i is the current temperatures location
             temps[i].temp = min_temp;
             temps[min_index].temp = current_temp;
-            // current_temp = min_index
-            ;
+            printf("min temp last condition %i at index %i\n", temps[i].temp, i);
+            printf("current temp last condidtion %i at index %i\n", temps[min_index].temp, i);
+
+            
+            
         }
 
         //  loop through array again
@@ -99,16 +102,18 @@ int smallest_number_index(int x)
 {
     // create a loop that doesnt include current temp
 
-    int min = temps[0].temp;
-    int min_index;
+    int min = temps[x].temp;
+    int min_index = x;
     for (int i = x; i < NUM_CITIES; i++)
     {
         if (temps[i].temp < min)
         {
             min = temps[i].temp;
             min_index = i;
+            printf("min index in last function %i \n", min_index);
             printf("min %i \n", min);
-        }
+        } 
     }
+    
     return min_index;
 }
