@@ -2,8 +2,10 @@
 #include <stdio.h>
 
 int factorial(int number);
+
 int main(void)
 {
+    // prompt user for number;
  int user_number = get_int("enter number: ");
  printf("%i\n", factorial(user_number));
 }
