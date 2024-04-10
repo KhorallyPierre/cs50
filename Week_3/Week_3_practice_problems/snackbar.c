@@ -70,8 +70,8 @@ int main(void)
     printf("Your total cost is: $%.2f\n", total);
 }
 
-// First is add_items which will add at least the first 4 items on the Beach Burger Shack menu.
-// Add at least the first four items to the menu array
+// First is add_items which will add at least the first 4 items on the Beach Burger Shack menu.DONE
+// Add at least the first four items to the menu array DONE
 void add_items(void)
 {
     menu[0].item = "Burger";
@@ -80,16 +80,16 @@ void add_items(void)
     menu[1].price = 11.0;
     menu[2].item = "Hot dog";
     menu[2].price = 5.0;
-      menu[3].item = "Fries";
+    menu[3].item = "Fries";
     menu[3].price = 5;
     menu[4].item = "Cheese Dog";
     menu[4].price = 7;
-
-    //     int price_of_item;
-    //    for (int i =0; i < NUM_ITEMS; i++){
-    //     price_of_item = menu[i].price;
-    //    }
-    //     printf("price of each item %i\n", price_of_item);
+    menu[5].item = "Juice";
+    menu[5].price = 4;
+    menu[6].item = "Pizza";
+    menu[6].price = 8.50;
+    menu[7].item = "Popsicle";
+    menu[7].price = 6.25;
 }
 
 // Search through the menu array to find an item's cost
@@ -99,12 +99,24 @@ void add_items(void)
 float get_cost(string item)
 {
 
-    string each_item;
+    string each_item_name;
+    // search through menu array
     for (int i = 0; i < NUM_ITEMS; i++)
     {
-        each_item = menu[i].item;
-        printf("each item %s \n", each_item);
-        
+        menu_item menu_item = menu[i];
+
+        each_item_name = menu[i].item;
+
+        float each_item_cost = menu[i].price;
+
+        // use linear algorhitm to search for each item chosen, and return corresponding price.
+        // this condition isn't working
+        if (item == menu[i].item)
+        {
+            each_item_cost = menu[i].price;
+        }
+
     }
+    // printf("item ordered%s \n", item);
     return 0.0;
 }
